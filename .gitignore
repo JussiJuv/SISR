@@ -1,0 +1,53 @@
+# ============================================================
+# Root .gitignore for Dippa_koodit_test
+# Covers Diffusion/, flow_matching_NAFNet/, and metrics/.
+#
+# Nested .gitignore files inside the vendored repos
+# (Diffusion/image-restoration-sde/.gitignore and
+# flow_matching_NAFNet/.gitignore) are left untouched on
+# ============================================================
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+
+# ---- Virtual environments ----
+venv/
+.venv/
+env/
+.env/
+conda-meta/
+
+# ---- OS / editor junk ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ---- Training / validation outputs (large + machine-specific) ----
+flow_matching_NAFNet/outputs/
+Diffusion/image-restoration-sde/experiments/
+
+# catch-all in case similarly named folders
+**/outputs/
+**/experiments/
+**/results/
+**/*_val/
+**/validation_samples/
+
+# ---- Logs / TensorBoard ----
+*.log
+log.txt
+train_log.txt
+validate_log.txt
+**/tb_logger/
+events.out.tfevents.*
+
+# ---- Checkpoints / large binary weights ----
+*.pth
+*.pt
+*.state
+*.ckpt
+*.safetensors

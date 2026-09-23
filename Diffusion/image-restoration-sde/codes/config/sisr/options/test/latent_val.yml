@@ -1,0 +1,64 @@
+name: refusion
+suffix: ~  # add suffix to saved images
+model: latent_denoising # denoising, latent_denoising
+distortion: sr
+gpu_ids: [0]
+
+num_val_images: 5
+
+sde:
+  max_sigma: 50
+  T: 100
+  schedule: cosine # linear, cosine
+  eps: 0.005
+  
+degradation:
+  # for denoising
+  sigma: 25
+  noise_type: G # Gaussian noise: G
+
+  # for super-resolution
+  scale: 4
+
+datasets:
+  test1:
+    name: Val_Dataset
+    mode: LQGT
+    dataroot_GT: datasets/rain/testH/GT
+    dataroot_LQ: datasets/rain/testH/LQ
+
+network_G:
+  preset: latent_default # latent_default, pixel_default, latent_big, pixel_big
+  
+# network_L not used in pixel space
+network_L:
+  which_model: UNet
+  setting:
+    in_ch: 3
+    out_ch: 3
+    ch: 64
+    ch_mult: [1, 2, 4]
+    embed_dim: 4
+  
+space_mode: latent
+  
+latent_config:
+  path: '/projappl/project_2012243/image-restoration/Diffusion/image-restoration-sde/latent_model/latent_bokeh.pth'
+  stats_path: '/projappl/project_2012243/image-restoration/Diffusion/image-restoration-sde/latent_model/latent_stats.pt'
+
+#### network structures
+#network_G:
+#  which_model_G: ConditionalNAFNet
+#  setting:
+#    width: 64
+#    enc_blk_nums: [1, 1, 1, 28]
+#    middle_blk_num: 1
+#    dec_blk_nums: [1, 1, 1, 1]
+
+#### path
+path:
+  results_root: experiments/results/refusion
+  log: experiments/logs/refusion
+  validation_dir: experiments/results/val
+  pretrain_model_G: ~
+  pretrain_model_L: '/projappl/project_2012243/image-restoration/Diffusion/image-restoration-sde/latent_model/latent_bokeh.pth'

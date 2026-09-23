@@ -1,0 +1,64 @@
+name: refusion
+suffix: ~ # add suffix to saved images
+model: latent_denoising # denoising, latent_denoising
+distortion: sr
+gpu_ids: [0]
+
+num_val_images: 5
+
+sde:
+  max_sigma: 50
+  T: 100
+  schedule: cosine # linear, cosine
+  eps: 0.005
+
+degradation:
+  # for denoising
+  sigma: 25
+  noise_type: G # Gaussian noise: G
+
+  # for super-resolution
+  scale: 4
+
+datasets:
+  test1:
+    name: Val_Dataset
+    mode: LQGT
+    dataroot_GT: C:\koulua\Dippa\dataset\DIV2K\DIV2K_train_HR
+    dataroot_LQ: C:\koulua\Dippa\dataset\DIV2K\DIV2K_train_LR_bicubic\X4
+
+network_G:
+  preset: latent_default # latent_default, pixel_default, latent_big, pixel_big
+
+# network_L not used in pixel space
+network_L:
+  which_model: UNet
+  setting:
+    in_ch: 3
+    out_ch: 3
+    ch: 64
+    ch_mult: [1, 2, 4]
+    embed_dim: 4
+
+space_mode: latent
+
+latent_config:
+  path: C:\koulua\Dippa_koodit_test\Diffusion\image-restoration-sde\latent_model/latent_bokeh.pth
+  stats_path: C:\koulua\Dippa_koodit_test\Diffusion\image-restoration-sde\latent_model/latent_stats.pt
+
+#### network structures
+#network_G:
+#  which_model_G: ConditionalNAFNet
+#  setting:
+#    width: 64
+#    enc_blk_nums: [1, 1, 1, 28]
+#    middle_blk_num: 1
+#    dec_blk_nums: [1, 1, 1, 1]
+
+#### path
+path:
+  results_root: C:\koulua\Dippa_koodit_test\Diffusion\image-restoration-sde\experiments\results
+  log: C:\koulua\Dippa_koodit_test\Diffusion\image-restoration-sde\experiments\results
+  validation_dir: C:\koulua\Dippa_koodit_test\Diffusion\image-restoration-sde\experiments\results\val
+  pretrain_model_G: C:\koulua\Dippa_koodit_test\Diffusion\image-restoration-sde\experiments\models\latest_EMA.pth
+  pretrain_model_L: C:\koulua\Dippa_koodit_test\Diffusion\image-restoration-sde\latent_model/latent_bokeh.pth

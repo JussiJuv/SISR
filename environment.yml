@@ -1,0 +1,45 @@
+name: SISR
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda
+  - numpy<2
+  - scipy=1.9.3
+  - pillow=9.3.0
+  - matplotlib
+  - jupyter
+  - tqdm
+  - pyyaml=6.0
+  - networkx
+  - sympy
+  - einops
+  - pip
+  - pip:
+      - flow-matching
+      - torchmetrics[image]
+      - pre-commit
+      - black==22.6.0
+      - usort==1.0.4
+      - ufmt==2.3.0
+      - flake8==7.0.0
+      - ipykernel
+      - torchdiffeq
+      - scikit-learn
+      - pydoclint
+      - coverage
+      - opencv-python-headless
+      - lpips
+      - scikit-image
+      - lmdb==1.3.0
+      - timm==0.6.12
+      - tensorboard
+      - tensorboardX==2.5.1
+      - ema-pytorch==0.2.3
+      - torchsummaryX==1.3.0
