@@ -8,7 +8,7 @@ This repository is the codebase for a master's thesis comparing **diffusion-base
 
 - `Diffusion/` latent/pixel diffusion branch based on [image-restoration-sde](https://github.com/Algolzw/image-restoration-sde)
 - `flow_matching_NAFNet/` latent/pixel flow matching branch, based on [flow matching](https://github.com/facebookresearch/flow_matching)
-- `metrics/` shared evaluation scripts (LPIPS, PSNR; SSIM; DISTS, MS-SSIM, FID)
+- `metrics/` shared evaluation scripts (LPIPS, PSNR, SSIM, DISTS, MS-SSIM, FID)
 
 ## Setup
 
@@ -41,7 +41,7 @@ Edit the `REPO` / `DATA_ROOT` variables near the top of each `.bat` file to poin
 
 ## Results
 
-Across 4x and 8x super-resolution, flow matching in pixel-space gave the strongest overall perception-distortion balance among the tested configurations, while diffusion remained stronger on pure perceptual quality.
+Across 4x and 8x super-resolution, flow matching in pixel-space gave the strongest overall perception-distortion balance among the tested configurations, while diffusion remained stronger on pure perceptual quality. In the figure, crosses report the 8x super-resolution results and dots the 4x super-resolution results.
 
 ![Perception-distortion plane](images/PD_plot_4x_8x_combined.png)
 
